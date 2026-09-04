@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { TRADITIONS } from '@/components/shvarts/traditions';
 import { useReveal } from '@/hooks/useReveal';
 import Nav from '@/components/shvarts/Nav';
