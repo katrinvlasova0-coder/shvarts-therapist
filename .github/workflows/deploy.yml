@@ -33,7 +33,7 @@ jobs:
         run: npm run build
         env:
           VITE_BASE44_APP_ID: 6a9847b2923d3b4ff598cb9a
-          VITE_BASE44_APP_BASE_URL: https://shvarts-black.com
+          VITE_BASE44_APP_BASE_URL: https://amalgamer.com
           VITE_BASE44_SERVER_URL: https://base44.app
 
       - name: Copy CNAME to dist

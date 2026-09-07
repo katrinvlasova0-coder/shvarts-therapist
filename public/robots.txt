@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shvarts-black.com/sitemap.xml
+Sitemap: https://amalgamer.com/sitemap.xml

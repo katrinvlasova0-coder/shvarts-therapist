@@ -1,6 +1,6 @@
 # ШВАРЦ ЧÖРНЫЙ — Выйди из Тени
 
-Production site: [shvarts-black.com](https://shvarts-black.com). GitHub Pages deploy via `.github/workflows/deploy.yml`.
+Production site: [amalgamer.com](https://amalgamer.com). GitHub Pages deploy via `.github/workflows/deploy.yml`.
 
 Use this repository to run and edit the app locally, then publish changes back through Base44.
 

@@ -12,5 +12,5 @@ export const base44 = createClient({
   functionsVersion,
   serverUrl,
   requiresAuth: false,
-  appBaseUrl: appBaseUrl || 'https://shvarts-black.com',
+  appBaseUrl: appBaseUrl || 'https://amalgamer.com',
 });
