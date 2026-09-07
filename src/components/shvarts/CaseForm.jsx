@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useReveal } from '@/hooks/useReveal';
 import { base44 } from '@/api/base44Client';
+import { submitForm } from '@/lib/submitForm';
 import { Paperclip, Loader2, Check } from 'lucide-react';
 
 const REQUEST_TYPES = [
@@ -46,6 +47,21 @@ export default function CaseForm() {
     if (!form.name || !form.contact || !form.request_type) { setError('Заполните обязательные поля'); return; }
     setSubmitting(true);
     try {
+      const messageParts = [
+        form.contact_method ? `Способ связи: ${form.contact_method}` : '',
+        form.alias ? `Псевдоним: ${form.alias}` : '',
+        form.case_text?.trim() || '',
+        fileUrl ? `Файл: ${fileUrl}` : '',
+      ].filter(Boolean);
+
+      await submitForm({
+        type: 'case',
+        name: form.name,
+        email: form.contact,
+        subject: form.request_type,
+        message: messageParts.join('\n\n'),
+      });
+
       await base44.entities.CaseRequest.create({
         name: form.name,
         alias: form.alias,

@@ -35,6 +35,7 @@ jobs:
           VITE_BASE44_APP_ID: 6a9847b2923d3b4ff598cb9a
           VITE_BASE44_APP_BASE_URL: https://amalgamer.com
           VITE_BASE44_SERVER_URL: https://base44.app
+          VITE_GOOGLE_SHEETS_WEBHOOK_URL: https://script.google.com/macros/s/AKfycby1lINKHR80ryX5OcCuRE2tr1b85owLFLLA13tacTDtiQbbLkubhqHp3GKw9GPws5wV/exec
 
       - name: Copy CNAME to dist
         run: |
