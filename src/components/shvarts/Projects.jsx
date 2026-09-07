@@ -3,11 +3,27 @@ import { useReveal } from '@/hooks/useReveal';
 import { base44 } from '@/api/base44Client';
 import { Image } from '@/components/ui/image';
 import { ArrowUpRight } from 'lucide-react';
+import { useLang } from '@/i18n/LanguageContext';
+
+const DEFAULT_PROJECTS = {
+  ru: [
+    { title: 'Международный Исследовательский Центр Русален' },
+    { title: 'Научно-Исследовательское поселение PSYTY' },
+    { title: 'Научно-исследовательский институт изучения природы Денег (НИИ Денег)' },
+  ],
+  en: [
+    { title: 'International Research Center Rusalen' },
+    { title: 'PSYTY Research Settlement' },
+    { title: 'Research Institute for the Study of the Nature of Money' },
+  ],
+};
 
 export default function Projects() {
   const [ref, visible] = useReveal();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { lang } = useLang();
+  const en = lang === 'en';
 
   useEffect(() => {
     base44.entities.Project.list('sort_order', 50)
@@ -21,7 +37,7 @@ export default function Projects() {
       <div className="max-w-[1400px] mx-auto">
         <div className={`reveal ${visible ? 'is-visible' : ''}`}>
           <h2 className="text-bone font-black tracking-tightest leading-[0.9]" style={{ fontSize: 'clamp(2rem, 7vw, 7rem)' }}>
-            ИССЛЕДОВАТЕЛЬСКИЕ ПРОЕКТЫ
+            {en ? 'RESEARCH PROJECTS' : 'ИССЛЕДОВАТЕЛЬСКИЕ ПРОЕКТЫ'}
           </h2>
         </div>
 
@@ -31,14 +47,14 @@ export default function Projects() {
           </div>
         ) : projects.length === 0 ? (
           <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-px bg-border border border-border">
-            {DEFAULT_PROJECTS.map((p, i) => (
-              <ProjectCard key={i} {...p} />
+            {DEFAULT_PROJECTS[lang].map((p, i) => (
+              <ProjectCard key={i} {...p} en={en} />
             ))}
           </div>
         ) : (
           <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-px bg-border border border-border">
             {projects.map((p) => (
-              <ProjectCard key={p.id} title={p.title} image_url={p.image_url} description={p.description} external_url={p.external_url} />
+              <ProjectCard key={p.id} title={en ? (p.title_en || p.title) : p.title} image_url={p.image_url} description={en ? (p.description_en || p.description) : p.description} external_url={p.external_url} en={en} />
             ))}
           </div>
         )}
@@ -47,13 +63,7 @@ export default function Projects() {
   );
 }
 
-const DEFAULT_PROJECTS = [
-  { title: 'Международный Исследовательский Центр Русален' },
-  { title: 'Научно-Исследовательское поселение PSYTY' },
-  { title: 'Научно-исследовательский институт изучения природы Денег (НИИ Денег)' },
-];
-
-function ProjectCard({ title, image_url, description, external_url }) {
+function ProjectCard({ title, image_url, description, external_url, en }) {
   return (
     <div className="bg-void p-8 md:p-10 flex flex-col">
       {image_url ? (
@@ -62,12 +72,12 @@ function ProjectCard({ title, image_url, description, external_url }) {
         </div>
       ) : (
         <div className="relative aspect-[4/3] mb-6 bg-shadow-1 flex items-center justify-center">
-          <span className="text-steel text-[10px] tracking-[0.3em] uppercase">[ Изображение будет добавлено ]</span>
+          <span className="text-steel text-[10px] tracking-[0.3em] uppercase">{en ? '[ Image to be added ]' : '[ Изображение будет добавлено ]'}</span>
         </div>
       )}
       <h3 className="text-bone text-xl md:text-2xl font-bold tracking-tight leading-tight">{title}</h3>
       <p className="mt-4 text-steel text-sm leading-relaxed flex-1">
-        {description || '[Текст будет добавлен автором]'}
+        {description || (en ? '[ Text to be added by the author ]' : '[Текст будет добавлен автором]')}
       </p>
       {external_url ? (
         <a
@@ -76,11 +86,11 @@ function ProjectCard({ title, image_url, description, external_url }) {
           rel="noopener noreferrer"
           className="mt-6 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-bone hover:text-gold transition-colors"
         >
-          Подробнее <ArrowUpRight size={14} />
+          {en ? 'Details' : 'Подробнее'} <ArrowUpRight size={14} />
         </a>
       ) : (
         <span className="mt-6 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-steel/50">
-          Подробнее
+          {en ? 'Details' : 'Подробнее'}
         </span>
       )}
     </div>

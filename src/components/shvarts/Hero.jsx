@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Image } from '@/components/ui/image';
+import { useLang } from '@/i18n/LanguageContext';
 
 const HERO_IMG = 'https://media.base44.com/images/public/6a9847b2923d3b4ff598cb9a/2f133727f_sdelai-vse-cherno-belym_N8EeXy1oURK0qUkfY9j2ug_lJOqrI8jTU-EzNIg0s1zlg_cover.png';
 
 export default function Hero() {
   const [loaded, setLoaded] = useState(false);
   const [offset, setOffset] = useState(0);
+  const { lang } = useLang();
+  const en = lang === 'en';
 
   useEffect(() => {
     const onMove = (e) => {
@@ -27,7 +30,7 @@ export default function Hero() {
         <div className="absolute inset-0 animate-slow-zoom">
           <Image
             src={HERO_IMG}
-            alt="ШВАРЦ ЧÖРНЫЙ — портрет"
+            alt={en ? 'SHVARTS BLACK — portrait' : 'ШВАРЦ ЧÖРНЫЙ — портрет'}
             fittingType="fill"
             className="w-full h-full object-cover grayscale contrast-125"
             quality={60}
@@ -45,8 +48,8 @@ export default function Hero() {
               className="text-bone font-black tracking-mega leading-[0.85] animate-fade-in whitespace-nowrap"
               style={{ fontSize: 'clamp(1.6rem, 9vw, 9rem)' }}
             >
-              <span className="block md:inline">ШВАРЦ</span>
-              <span className="block md:inline md:ml-6 mt-2 md:mt-0">ЧÖРНЫЙ</span>
+              <span className="block md:inline">{en ? 'SHVARTS' : 'ШВАРЦ'}</span>
+              <span className="block md:inline md:ml-6 mt-2 md:mt-0">{en ? 'BLACK' : 'ЧÖРНЫЙ'}</span>
             </h1>
           </div>
 
@@ -55,9 +58,19 @@ export default function Hero() {
               className="text-bone/80 text-xl md:text-3xl animate-fade-in"
               style={{ animationDelay: '250ms', opacity: 0 }}
             >
-              Брутальный психолог
-              <br />
-              Для экстремальных запросов.
+              {en ? (
+                <>
+                  A Brutal Psychologist.
+                  <br />
+                  For extreme requests.
+                </>
+              ) : (
+                <>
+                  Брутальный Психолог.
+                  <br />
+                  Для экстремальных запросов.
+                </>
+              )}
             </p>
           </div>
 
@@ -66,9 +79,19 @@ export default function Hero() {
               className="font-serif-display text-bone"
               style={{ fontSize: 'clamp(1.6rem, 9vw, 9rem)', animationDelay: '600ms', lineHeight: '0.9' }}
             >
-              Программа:
-              <br />
-              Выйди из Тени.
+              {en ? (
+                <>
+                  Program:
+                  <br />
+                  Exit the Shadow.
+                </>
+              ) : (
+                <>
+                  Программа:
+                  <br />
+                  Выйди из Тени.
+                </>
+              )}
             </h2>
           </div>
 
@@ -76,20 +99,30 @@ export default function Hero() {
             className="mt-6 md:mt-8 max-w-xl text-bone/90 text-lg md:text-xl leading-relaxed animate-fade-in"
             style={{ animationDelay: '600ms', opacity: 0, textShadow: '0 2px 18px rgba(0,0,0,0.95), 0 0 40px rgba(0,0,0,0.85)' }}
           >
-            Работа с негативными, табуированными и деструктивными сторонами Личности.
-            <br className="hidden md:block" />
-            Кризисными и терминальными фазами в жизни, отношениях, бизнесе.
+            {en ? (
+              <>
+                <span className="lg:whitespace-nowrap">Working with the negative, taboo and destructive sides of the Personality.</span>
+                <br className="hidden md:block" />{" "}
+                <span className="lg:whitespace-nowrap">Crisis and terminal phases in life, relationships, business.</span>
+              </>
+            ) : (
+              <>
+                <span className="lg:whitespace-nowrap">Работа с негативными, табуированными и деструктивными сторонами Личности.</span>
+                <br className="hidden md:block" />{" "}
+                <span className="lg:whitespace-nowrap">Кризисными и терминальными фазами в жизни, отношениях, бизнесе.</span>
+              </>
+            )}
           </p>
 
           <div
             className="mt-16 md:mt-20 flex flex-col sm:flex-row gap-4 animate-fade-in"
             style={{ animationDelay: '900ms', opacity: 0 }}
           >
-            <button onClick={() => scrollTo('case-form')} className="btn-monolith btn-monolith-solid">
-              Записаться на консультацию
+            <button onClick={() => scrollTo('case-form')} className="btn-monolith btn-gold-shimmer">
+              {en ? 'Book a consultation' : 'Записаться на консультацию'}
             </button>
             <button onClick={() => scrollTo('case-form')} className="btn-monolith">
-              Поделиться кейсом
+              {en ? 'Share a case' : 'Поделиться кейсом'}
             </button>
           </div>
         </div>

@@ -1,21 +1,39 @@
 import { useReveal } from '@/hooks/useReveal';
+import { useLang } from '@/i18n/LanguageContext';
 
-const CASES = [
-  'Антикризисный менеджмент Самости',
-  'Реструктуризация непрофильных, проблемных и токсичных активов Личности',
-  'Капитализация отношений, сопровождение их выхода на IPO',
-  'Подготовка пар к пресейлам и экзитам',
-  'Анализ и расторжение сделок слияния, поглощения, созависимости',
-  'Управление конфликтами, медиация, кремация',
-  'Идентификация бессознательных и полевых факторов влияния на бизнес',
-  'Работа с терминальными фазами в жизни, отношениях и бизнесе',
-];
+const CASES = {
+  ru: [
+    'Антикризисный менеджмент Самости',
+    'Реструктуризация непрофильных, проблемных и токсичных активов Личности',
+    'Капитализация отношений, сопровождение их выхода на IPO',
+    'Перехват управления деструктивными отношениями (абъюз, газлайтинг, харасмент, буллинг, сталкинг, неглектинг, бодишейминг)',
+    'Подготовка пар к пресейлам и экзитам',
+    'Анализ и расторжение сделок слияния, поглощения, созависимости',
+    'Управление конфликтами, медиация, кремация',
+    'Идентификация бессознательных и полевых факторов влияния на бизнес',
+    'Работа с терминальными фазами в жизни, отношениях и бизнесе',
+  ],
+  en: [
+    'Crisis management of the Self',
+    'Restructuring of non-core, problem and toxic assets of the Personality',
+    'Capitalization of relationships, escorting them to IPO',
+    'Takeover of control in destructive relationships (abuse, gaslighting, harassment, bullying, stalking, neglecting, body-shaming)',
+    'Preparing couples for pre-sales and exits',
+    'Analysis and termination of merger, acquisition and codependency deals',
+    'Conflict management, mediation, cremation',
+    'Identification of unconscious and field factors influencing business',
+    'Working with terminal phases in life, relationships and business',
+  ],
+};
 
-const ACCENTS = ['Самости', 'IPO', 'пресейлам', 'экзитам', 'слияния', 'поглощения', 'созависимости', 'медиация', 'кремация', 'бизнес', 'терминальные фазы'];
+const ACCENTS = {
+  ru: ['Самости', 'IPO', 'пресейлам', 'экзитам', 'слияния', 'поглощения', 'созависимости', 'медиация', 'кремация', 'бизнес', 'терминальные фазы'],
+  en: ['Self', 'IPO', 'pre-sales', 'exits', 'merger', 'acquisition', 'codependency', 'mediation', 'cremation', 'business', 'terminal phases'],
+};
 
-function highlight(text) {
+function highlight(text, accents) {
   let parts = [{ t: text, hit: false }];
-  ACCENTS.forEach((word) => {
+  accents.forEach((word) => {
     parts = parts.flatMap((p) => {
       if (p.hit) return [p];
       const idx = p.t.toLowerCase().indexOf(word.toLowerCase());
@@ -38,22 +56,36 @@ function highlight(text) {
 
 export default function BrutalPsychologist() {
   const [ref, visible] = useReveal();
+  const { lang } = useLang();
+  const cases = CASES[lang];
+  const accents = ACCENTS[lang];
 
   return (
     <section id="cases" ref={ref} className="relative bg-void pt-2 md:pt-10 pb-24 md:pb-40 px-5 md:px-10">
       <div className="max-w-[1400px] mx-auto">
         <div className={`reveal ${visible ? 'is-visible' : ''} mt-24 md:mt-40`}>
           <h2 className="text-bone font-black tracking-tightest leading-[0.9] whitespace-nowrap" style={{ fontSize: 'clamp(1.5rem, 4vw, 4.5rem)' }}>
-            ТЕРАПЕВТИЧЕСКИЕ
-            <br className="md:hidden" />
-            {' '}
-            ВЕКТОРА:
+            {lang === 'en' ? (
+              <>
+                THERAPEUTIC
+                <br className="md:hidden" />
+                {' '}
+                VECTORS:
+              </>
+            ) : (
+              <>
+                ТЕРАПЕВТИЧЕСКИЕ
+                <br className="md:hidden" />
+                {' '}
+                ВЕКТОРА:
+              </>
+            )}
           </h2>
         </div>
 
         <div className="mt-8 md:mt-20 divide-y divide-border border-y border-border">
-          {CASES.map((c, i) => (
-            <CaseRow key={i} index={i} text={c} />
+          {cases.map((c, i) => (
+            <CaseRow key={i} index={i} text={c} accents={accents} />
           ))}
         </div>
       </div>
@@ -61,7 +93,7 @@ export default function BrutalPsychologist() {
   );
 }
 
-function CaseRow({ index, text }) {
+function CaseRow({ index, text, accents }) {
   const [ref, visible] = useReveal({ threshold: 0.2 });
   return (
     <div
@@ -76,7 +108,7 @@ function CaseRow({ index, text }) {
         className="flex-1 text-bone font-medium leading-[1.2] tracking-tight transition-transform duration-500 group-hover:translate-x-2"
         style={{ fontSize: 'clamp(0.875rem, 1.8vw, 1.75rem)' }}
       >
-        {highlight(text)}
+        {highlight(text, accents)}
       </p>
     </div>
   );

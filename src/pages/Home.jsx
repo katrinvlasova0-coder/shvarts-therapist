@@ -8,8 +8,13 @@ import Projects from '@/components/shvarts/Projects';
 import Reviews from '@/components/shvarts/Reviews';
 import CaseForm from '@/components/shvarts/CaseForm';
 import Footer from '@/components/shvarts/Footer';
+import { useSectionAnalytics } from '@/hooks/useSectionAnalytics';
+
+const SECTION_IDS = ['hero', 'shadow', 'cases', 'amalgam', 'about', 'projects', 'publications', 'reviews', 'case-form', 'contacts'];
 
 export default function Home() {
+  useSectionAnalytics(SECTION_IDS);
+
   return (
     <div className="bg-void min-h-screen">
       <FilmGrain />

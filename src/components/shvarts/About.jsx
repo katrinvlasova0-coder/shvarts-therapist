@@ -1,21 +1,37 @@
 import { useReveal } from '@/hooks/useReveal';
 import { Image } from '@/components/ui/image';
+import { useLang } from '@/i18n/LanguageContext';
 
 const IMG = 'https://media.base44.com/images/public/6a9847b2923d3b4ff598cb9a/0734e5452_high-level-description-a-noir-photograph_SaRKUzGnWjimZOsPXMaoIw_tE888KtFRvqEdJB06Y_n6w1.png';
 
-const BIO = [
-  'Выпускник МГУ им. М.В. Ломоносова',
-  'Кандидат философских наук и религиоведения',
-  'Психолог',
-  'Основатель Международного Исследовательского Центра Русален',
-  'Основатель Научно-Исследовательского поселения психологов PSYTY',
-  'Основатель Научно-исследовательского института изучения природы Денег (НИИ Денег)',
-  'Инструктор йоги и учитель Дхармы',
-  'Социальный предприниматель.',
-];
+const BIO = {
+  ru: [
+    'Выпускник МГУ им. М.В. Ломоносова',
+    'Кандидат философских наук и религиоведения',
+    'Психолог',
+    'Основатель Международного Исследовательского Центра Русален',
+    'Основатель Научно-Исследовательского поселения психологов PSYTY',
+    'Основатель Научно-исследовательского института изучения природы Денег (НИИ Денег)',
+    'Инструктор йоги и учитель Дхармы',
+    'Социальный предприниматель.',
+  ],
+  en: [
+    'Graduate of Lomonosov Moscow State University',
+    'Candidate of Sciences in Philosophy and Religious Studies',
+    'Psychologist',
+    'Founder of the International Research Center Rusalen',
+    'Founder of the PSYTY Research Settlement of Psychologists',
+    'Founder of the Research Institute for the Study of the Nature of Money',
+    'Yoga instructor and Dharma teacher',
+    'Social entrepreneur.',
+  ],
+};
 
 export default function About() {
   const [ref, visible] = useReveal();
+  const { lang } = useLang();
+  const en = lang === 'en';
+  const bio = BIO[lang];
 
   return (
     <section id="about" ref={ref} className="relative bg-void overflow-hidden">
@@ -29,14 +45,24 @@ export default function About() {
         <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-10 py-24 w-full">
           <div className={`max-w-2xl reveal ${visible ? 'is-visible' : ''}`}>
             <h2 className="text-bone font-black tracking-tightest leading-[0.9] whitespace-nowrap" style={{ fontSize: 'clamp(2rem, 6vw, 6rem)', textShadow: '0 4px 30px rgba(0,0,0,0.9)' }}>
-              ШВАРЦ ЧÖРНЫЙ
+              {en ? 'SHVARTS BLACK' : 'ШВАРЦ ЧÖРНЫЙ'}
             </h2>
-            <p className="mt-4 font-serif-display text-bone/80 text-lg md:text-xl leading-snug max-w-xl" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.9)' }}>
-              Многолетний практик управления личностными, деловыми, репутационными, отношенческими и экзистенциальными кризисами.
+            <p className="mt-4 font-serif-display text-bone/80 text-lg md:text-xl leading-snug" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.9)' }}>
+              {en ? (
+                <>
+                  <span className="lg:whitespace-nowrap">A long-standing practitioner of managing personal, business, reputational, relational</span>{' '}
+                  and existential crises.
+                </>
+              ) : (
+                <>
+                  <span className="lg:whitespace-nowrap">Многолетний практик управления личностными, деловыми, репутационными, отношенческими</span>{' '}
+                  и экзистенциальными кризисами.
+                </>
+              )}
             </p>
           </div>
           <ul className="mt-10 max-w-2xl divide-y divide-border/60 border-y border-border/60">
-            {BIO.map((line, i) => (
+            {bio.map((line, i) => (
               <li
                 key={i}
                 className={`group py-4 flex items-start gap-5 reveal ${visible ? 'is-visible' : ''}`}

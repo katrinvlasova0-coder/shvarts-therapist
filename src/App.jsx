@@ -14,6 +14,7 @@ import ResetPassword from '@/pages/ResetPassword';
 import Home from '@/pages/Home';
 import Admin from '@/pages/Admin';
 import Tradition from '@/pages/Tradition';
+import { LanguageProvider } from '@/i18n/LanguageContext';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -64,7 +65,9 @@ function App() {
       <QueryClientProvider client={queryClientInstance}>
         <Router>
           <ScrollToTop />
-          <AuthenticatedApp />
+          <LanguageProvider>
+            <AuthenticatedApp />
+          </LanguageProvider>
         </Router>
         <Toaster />
       </QueryClientProvider>
