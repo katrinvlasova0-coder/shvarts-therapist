@@ -14,6 +14,7 @@ import ResetPassword from '@/pages/ResetPassword';
 import Home from '@/pages/Home';
 import Admin from '@/pages/Admin';
 import Tradition from '@/pages/Tradition';
+import Publications from '@/pages/Publications';
 import { LanguageProvider } from '@/i18n/LanguageContext';
 // Add page imports here
 
@@ -49,6 +50,7 @@ const AuthenticatedApp = () => {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/" element={<Home />} />
       <Route path="/amalgam/:slug" element={<Tradition />} />
+      <Route path="/publications" element={<Publications />} />
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>
         <Route path="/admin" element={<Admin />} />
       </Route>

@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { useLang } from '@/i18n/LanguageContext';
 
 export default function Footer() {
   const { lang, setLang } = useLang();
+  const navigate = useNavigate();
   const en = lang === 'en';
 
   const sections = en
@@ -9,7 +11,19 @@ export default function Footer() {
     : [['Главная','hero'],['Программа','shadow'],['Вектора терапии','cases'],['Амальгама','amalgam'],['Автор','about'],['Проекты','projects'],['Публикации','publications'],['Контакты','contacts']];
   const cities = en ? ['Moscow', 'London', 'Zurich', 'Dubai', 'Tel Aviv'] : ['Москва', 'Лондон', 'Цюрих', 'Дубай', 'Тель-Авив'];
 
-  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const scrollTo = (id) => {
+    if (id === 'publications') {
+      navigate('/publications');
+      return;
+    }
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/');
+      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 200);
+    }
+  };
 
   return (
     <footer id="contacts" className="relative bg-void border-t border-border px-5 md:px-10 pt-24 pb-10">

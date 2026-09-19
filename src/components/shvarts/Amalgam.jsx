@@ -35,11 +35,16 @@ export default function Amalgam() {
         </div>
 
         <div className="mt-16 md:mt-24 grid md:grid-cols-2 gap-10 md:gap-20 items-start">
-          <p className={`font-serif-display text-bone/85 text-2xl md:text-4xl leading-snug reveal ${visible ? 'is-visible' : ''}`} style={{ transitionDelay: '200ms' }}>
-            {en
-              ? 'An amalgam of modern psychotherapeutic schools and approaches, with the centuries-old traditions of Buddhism, Sufism, mystical Judaism, Shinto and Zen.'
-              : 'Амальгама современных психотерапевтических школ и подходов, с вековыми традициями буддизма, суфизма, мистического иудаизма, синтоизма и дзен.'}
-          </p>
+          <div className={`reveal ${visible ? 'is-visible' : ''}`} style={{ transitionDelay: '200ms' }}>
+            <p className="font-serif-display text-bone/85 text-2xl md:text-4xl leading-snug">
+              {en
+                ? 'An amalgam of modern psychotherapeutic schools and approaches, with the centuries-old traditions of Buddhism, Sufism, mystical Judaism, Shinto and Zen.'
+                : 'Амальгама современных психотерапевтических школ и подходов, с вековыми традициями буддизма, суфизма, мистического иудаизма, синтоизма и дзен.'}
+            </p>
+            <p className="mt-4 md:mt-6 font-serif-display text-bone/85 text-lg md:text-3xl leading-snug">
+              {en ? '(Shake well before use)' : '(Перед употреблением взбалтывать)'}
+            </p>
+          </div>
           <div className={`reveal ${visible ? 'is-visible' : ''}`} style={{ transitionDelay: '400ms' }}>
             <span className="text-[10px] uppercase tracking-[0.3em] text-steel">{en ? 'How it works:' : 'Как это работает:'}</span>
             <ul className="mt-6 divide-y divide-border border-y border-border">

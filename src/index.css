@@ -265,7 +265,7 @@
   section#amalgam p.font-serif-display { font-size: 1.52rem !important; line-height: 1.45 !important; }
 
   /* Therapy vectors rows */
-  section#cases p.flex-1 { font-size: 1.75rem !important; }
+  section#cases .case-title { font-size: 1.75rem !important; }
 
   /* Projects */
   section#projects h2 { font-size: clamp(1.75rem, 5vw, 3rem) !important; }

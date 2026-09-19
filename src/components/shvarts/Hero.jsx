@@ -45,30 +45,50 @@ export default function Hero() {
         <div className="flex-1 flex flex-col justify-center max-w-[1400px]">
           <div className="overflow-hidden">
             <h1
-              className="text-bone font-black tracking-mega leading-[0.85] animate-fade-in whitespace-nowrap"
+              className="text-bone font-black tracking-mega leading-[0.85] animate-fade-in"
               style={{ fontSize: 'clamp(1.6rem, 9vw, 9rem)' }}
             >
-              <span className="block md:inline">{en ? 'SHVARTS' : 'ШВАРЦ'}</span>
-              <span className="block md:inline md:ml-6 mt-2 md:mt-0">{en ? 'BLACK' : 'ЧÖРНЫЙ'}</span>
+              <span className="hidden lg:inline whitespace-nowrap">{en ? 'SHVARTS BLACK' : 'ШВАРЦ ЧÖРНЫЙ'}</span>
+              <span className="lg:hidden">
+                <span>{en ? 'SHVARTS' : 'ШВАРЦ'}</span>
+                <br />
+                <span className="inline-block translate-y-[0.1em]">{en ? 'BLACK' : 'ЧÖРНЫЙ'}</span>
+              </span>
             </h1>
           </div>
 
           <div className="mt-4 md:mt-8 overflow-hidden">
             <p
-              className="text-bone/80 text-xl md:text-3xl animate-fade-in"
+              className="text-bone/80 text-base md:text-2xl animate-fade-in"
               style={{ animationDelay: '250ms', opacity: 0 }}
             >
               {en ? (
                 <>
-                  A Brutal Psychologist.
-                  <br />
-                  For extreme requests.
+                  <span className="hidden lg:block whitespace-nowrap">
+                    <span className="font-bold">A Brutal Psychologist</span> for extreme requests, hopeless situations
+                  </span>
+                  <span className="hidden lg:block whitespace-nowrap">and polymodal crises.</span>
+                  <span className="lg:hidden">
+                    <span className="font-bold">A Brutal Psychologist</span>
+                    <br />
+                    for extreme requests, hopeless
+                    <br />
+                    situations and polymodal crises.
+                  </span>
                 </>
               ) : (
                 <>
-                  Брутальный Психолог.
-                  <br />
-                  Для экстремальных запросов.
+                  <span className="hidden lg:block whitespace-nowrap">
+                    <span className="font-bold">Брутальный психолог</span> для экстремальных запросов, безвыходных ситуаций
+                  </span>
+                  <span className="hidden lg:block whitespace-nowrap">и полимодальных кризисов.</span>
+                  <span className="lg:hidden">
+                    <span className="font-bold">Брутальный психолог</span>
+                    <br />
+                    для экстремальных запросов, безвыходных
+                    <br />
+                    ситуаций и полимодальных кризисов.
+                  </span>
                 </>
               )}
             </p>
@@ -101,15 +121,31 @@ export default function Hero() {
           >
             {en ? (
               <>
-                <span className="lg:whitespace-nowrap">Working with the negative, taboo and destructive sides of the Personality.</span>
-                <br className="hidden md:block" />{" "}
-                <span className="lg:whitespace-nowrap">Crisis and terminal phases in life, relationships, business.</span>
+                <span className="hidden lg:block whitespace-nowrap">Working with the negative, taboo and destructive sides of the Personality.</span>
+                <span className="hidden lg:block whitespace-nowrap">Crisis and terminal phases in life, relationships, business.</span>
+                <span className="lg:hidden">
+                  <span className="whitespace-nowrap">Working with the negative, taboo and destructive</span>
+                  <br className="hidden md:block" />
+                  {" "}<span className="whitespace-nowrap">sides of the Personality.</span>
+                  <br />
+                  <span className="whitespace-nowrap">Crisis and terminal</span>
+                  <br className="hidden md:block" />
+                  {" "}<span className="whitespace-nowrap">phases in life, relationships, business.</span>
+                </span>
               </>
             ) : (
               <>
-                <span className="lg:whitespace-nowrap">Работа с негативными, табуированными и деструктивными сторонами Личности.</span>
-                <br className="hidden md:block" />{" "}
-                <span className="lg:whitespace-nowrap">Кризисными и терминальными фазами в жизни, отношениях, бизнесе.</span>
+                <span className="hidden lg:block whitespace-nowrap">Работа с негативными, табуированными и деструктивными сторонами Личности.</span>
+                <span className="hidden lg:block whitespace-nowrap">Кризисными и терминальными фазами в жизни, отношениях, бизнесе.</span>
+                <span className="lg:hidden">
+                  <span className="whitespace-nowrap">Работа с негативными, табуированными</span>
+                  <br className="md:hidden" />
+                  <span className="whitespace-nowrap">и деструктивными сторонами Личности.</span>
+                  <br />
+                  <span className="whitespace-nowrap">Кризисными и терминальными</span>
+                  <br className="md:hidden" />
+                  <span className="whitespace-nowrap">фазами в жизни, отношениях, бизнесе.</span>
+                </span>
               </>
             )}
           </p>
